@@ -1,45 +1,45 @@
 
 <?php
 
-class Fila{
-    public $lista = array();
+class Queue{
+    public $list = array();
 
     public function __construct(){
-        $this->lista = array();
+        $this->list = array();
     }
 
-    public function vazia(){
-        return empty($this->lista);
+    public function empty(){
+        return empty($this->list);
     }
     
     public function push($item){
-        array_push($this->lista, $item);
+        array_push($this->list, $item);
     }
     
     public function pop(){
-        if (!$this->vazia()){
-            array_shift($this->lista);
+        if (!$this->empty()){
+            array_shift($this->list);
         }else{
             throw new Exception("A lista está vazia");
         }
     }
         
     public function top(){
-        if (!$this->vazia()){
-            return $this->lista[0];
+        if (!$this->empty()){
+            return $this->list[0];
         }else{
             return null;
         }
     }
 };
 
-$fila = new Fila();
+$queue = new Queue();
 
 for ($i = 0; $i < 10+1; $i++) {
-    $fila->push($i);
+    $queue->push($i);
     echo "\nLista: ";
     echo "[";
-    foreach ($fila->lista as $item) {
+    foreach ($queue->list as $item) {
         echo $item . ", ";
     }
     echo "]\n";
@@ -48,12 +48,12 @@ for ($i = 0; $i < 10+1; $i++) {
 
 echo "\n";
 
-while (!$fila->vazia()){
-    $primeiro_item_lista = $fila->top();
-    $fila->pop();
-    echo "\nItem removido da lista com sucesso: [$primeiro_item_lista]\n";
+while (!$queue->empty()){
+    $queue_first_item = $queue->top();
+    $queue->pop();
+    echo "\nItem removido da lista com sucesso: [$queue_first_item]\n";
     echo "\nLista: [ ";
-    foreach($fila->lista as $item){
+    foreach($queue->list as $item){
         echo $item . ", ";
     }
     echo "]\n\n";
